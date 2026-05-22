@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>yabrostudio · 阿伯工作室</title>
+  <!--
+    yabrostudio.com home page mockup.
+    Default language: zh-Hant-TW (Traditional Chinese / Taiwan).
+    Shorter than albertchen.xyz — no Now, no Notes sections.
+    Sections: Hero → 作品 (Projects, 3 tiles) → 關於 (About + contact merged) → Footer.
+
+    Sister mockup: yabrostudio-mockup-en.html (English version).
+
+    Stack target: WordPress + Divi child theme (forked from albertchen-xyz-child).
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #FFFFFF;
+      --bg-alt:       #FAFAFA;
+      --text:         #1A1A1A;
+      --text-muted:   #6B6B6B;
+      --text-subtle:  #999999;
+      --divider:      #EAEAEA;
+      --font-sans:    "Inter", "Noto Sans TC", system-ui, -apple-system,
+                      "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+      --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+      --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+      --space-9: 96px; --space-10: 128px;
+      --width-text: 720px;
+      --width-page: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; transition: color 150ms ease-out; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: 0; }
+    p { margin: 0; }
+
+    .page {
+      max-width: var(--width-page);
+      margin: 0 auto;
+      padding-left: var(--space-7);
+      padding-right: var(--space-7);
+    }
+    .section {
+      padding-top: var(--space-9);
+      padding-bottom: var(--space-9);
+    }
+    .section--narrow > * { max-width: var(--width-text); }
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--divider);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-4);
+    }
+    .nav-brand {
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-6);
+      font-size: 15px;
+      color: var(--text-muted);
+      align-items: center;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-lang {
+      display: inline-flex;
+      gap: var(--space-2);
+      padding-left: var(--space-5);
+      border-left: 1px solid var(--divider);
+      margin-left: var(--space-2);
+    }
+    .nav-lang a { color: var(--text-subtle); }
+    .nav-lang a.is-active { color: var(--text); font-weight: 600; }
+    .nav-lang a.is-active:hover { text-decoration: none; cursor: default; }
+
+    .hero { padding-top: var(--space-10); padding-bottom: var(--space-10); }
+    .hero-greeting {
+      font-size: 19px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-5);
+    }
+    .hero-display {
+      font-size: clamp(48px, 9vw, 80px);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-7);
+    }
+    .hero-body {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      max-width: 680px;
+      margin-bottom: var(--space-7);
+    }
+    .hero-ctas {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-7);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 150ms ease-out;
+    }
+    .btn:hover { background: var(--text-muted); text-decoration: none; }
+    .btn--secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--text);
+    }
+    .btn--secondary:hover { background: var(--text); color: var(--bg); }
+    .social-row { font-size: 15px; color: var(--text-muted); }
+    .social-row a:not(:last-child)::after {
+      content: " · ";
+      color: var(--text-subtle);
+      margin: 0 var(--space-2);
+    }
+
+    .projects-intro {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: var(--space-8);
+      line-height: 1.75;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-8) var(--space-7);
+      margin-bottom: var(--space-8);
+    }
+    .project-card { display: flex; flex-direction: column; }
+    .project-card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-subtle);
+      font-size: 13px;
+      margin-bottom: var(--space-4);
+    }
+    .project-card-image--stickers { background: #E8EDE3; color: #6B7A5E; }
+    .project-card-image--lottery  { background: #ECE0E0; color: #886060; }
+    .project-card-image--gas      { background: #DEE3EC; color: #5A6680; }
+    .project-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0;
+      margin-bottom: var(--space-2);
+      color: var(--text);
+    }
+    .project-card-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .project-card-blurb {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-3);
+      max-width: 95%;
+      line-height: 1.7;
+    }
+    .project-card-status {
+      font-size: 13px;
+      color: var(--text-subtle);
+      letter-spacing: 0.02em;
+    }
+    .more-link {
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-narrative p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: var(--space-5);
+    }
+    .about-narrative p:last-of-type { margin-bottom: var(--space-6); }
+
+    .footer {
+      border-top: 1px solid var(--divider);
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-7);
+      margin-top: var(--space-9);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-meta a:not(:last-child)::after {
+      content: " · ";
+      color: var(--text-subtle);
+      margin: 0 var(--space-2);
+    }
+
+    .section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.35;
+      margin-bottom: var(--space-5);
+    }
+
+    @media (max-width: 980px) {
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .page { padding-left: var(--space-5); padding-right: var(--space-5); }
+      .section { padding-top: var(--space-7); padding-bottom: var(--space-7); }
+      .hero { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+      .projects-grid { grid-template-columns: 1fr; gap: var(--space-7); }
+      .nav-links { gap: var(--space-4); font-size: 14px; }
+      .section-heading { font-size: 26px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="page nav-inner">
+      <div class="nav-brand">yabrostudio</div>
+      <div class="nav-links">
+        <a href="#projects">作品</a>
+        <a href="#about">關於</a>
+        <span class="nav-lang">
+          <a href="en.html">EN</a>
+          <a class="is-active">中</a>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="page">
+      <p class="hero-greeting">嗨，我是阿伯。</p>
+      <h1 class="hero-display">小工具，真上線。</h1>
+      <p class="hero-body">
+        阿伯工作室. 用 AI 跟雙手做有用的小東西 — 解夢工具、瓦斯抄表、寵物貼圖. 一個一個慢慢做、慢慢上線。
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn">看看作品</a>
+        <a href="#about" class="btn btn--secondary">關於工作室</a>
+      </div>
+      <div class="social-row">
+        <a href="#">X</a><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品 (Projects, 3 tiles only) -->
+  <section class="section" id="projects">
+    <div class="page">
+      <p class="eyebrow">作品</p>
+      <h2 class="section-heading">目前做的小工具。</h2>
+      <p class="projects-intro">
+        三個都是日常會用到的工具：拍照變貼圖、解夢算號碼、自動讀瓦斯表。
+      </p>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <a href="https://hahadoggo.com/stickers" target="_blank" rel="noopener">
+            <div class="project-card-image project-card-image--stickers">[ 哈哈狗拍貼機 ]</div>
+            <h3 class="project-card-title">哈哈狗拍貼機 <span style="font-size:0.75em;color:var(--text-subtle);">↗</span></h3>
+          </a>
+          <p class="project-card-blurb">
+            傳一張寵物照片進來，一天內變成一組客製化 LINE 貼圖。
+          </p>
+          <span class="project-card-status">進行中 · hahadoggo.com</span>
+        </article>
+
+        <article class="project-card">
+          <a href="/lotterydreamdecoder">
+            <div class="project-card-image project-card-image--lottery">[ 財神解夢樂起來 ]</div>
+            <h3 class="project-card-title">財神解夢樂起來</h3>
+          </a>
+          <p class="project-card-blurb">
+            把昨晚的夢丟進去，吐出 AI 解夢圖跟樂透建議號碼。
+          </p>
+          <span class="project-card-status">已上線</span>
+        </article>
+
+        <article class="project-card">
+          <a href="/LINEgashelper">
+            <div class="project-card-image project-card-image--gas">[ LINE 瓦斯讀表小幫手 ]</div>
+            <h3 class="project-card-title">LINE 瓦斯讀表小幫手</h3>
+          </a>
+          <p class="project-card-blurb">
+            拍張瓦斯表照片丟到 LINE，自動讀數、自動回報。
+          </p>
+          <span class="project-card-status">進行中</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 關於 (About + contact merged) -->
+  <section class="section section--narrow" id="about">
+    <div class="page">
+      <p class="eyebrow">關於</p>
+      <h2 class="section-heading">一個人開的小工作室。</h2>
+      <div class="about-narrative">
+        <p>
+          阿伯工作室（yabrostudio）是阿伯一個人經營的小型 AI 工作室。專注做能解決日常生活小問題的工具 — LINE 小幫手、AI 解夢、寵物相關產品。
+        </p>
+        <p>
+          慢慢做、慢慢上線，每一個都是真的會用的東西，不是 demo 也不是噱頭。
+        </p>
+      </div>
+
+      <h3 style="margin-top: 64px; margin-bottom: 16px; font-size: 22px; font-weight: 600; letter-spacing: 0;">聯絡阿伯</h3>
+      <p style="font-size: 18px; margin-bottom: 16px; line-height: 1.75;">寫信給我：<a href="mailto:hello@yabrostudio.com"><strong>hello@yabrostudio.com</strong></a></p>
+      <p style="font-size: 18px; margin-bottom: 16px; line-height: 1.75;">其他地方也找得到我：<a href="#">X</a> · <a href="#">GitHub</a> · <a href="#">LinkedIn</a> · <a href="#">Threads</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="page footer-inner">
+      <div>© 2026 yabrostudio · 阿伯工作室</div>
+      <div class="footer-meta">
+        <a href="en.html">English →</a><a href="#">RSS</a><a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
