@@ -192,6 +192,16 @@
       object-fit: cover;
       display: block;
     }
+    /* QR 變體 */
+    .project-card-image--qr {
+      padding: 8%;
+      background: #F5FFF7;
+    }
+    .project-card-image--qr img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
     .project-card-image--stickers { background: #E8EDE3; color: #6B7A5E; }
     .project-card-image--lottery  { background: #ECE0E0; color: #886060; }
     .project-card-image--gas      { background: #DEE3EC; color: #5A6680; }
@@ -344,14 +354,16 @@
         </article>
 
         <article class="project-card">
-          <a href="https://line.me/R/ti/p/@017ondzk" target="_blank" rel="noopener">
-            <div class="project-card-image project-card-image--gas">[ 瓦斯抄表小幫手 ]</div>
+          <a href="https://yabroexperiments.github.io/gas-helper-sales-preview/" target="_blank" rel="noopener">
+            <div class="project-card-image project-card-image--qr">
+              <img src="gas-meter-line-qr.png" alt="瓦斯抄表小幫手 LINE 加好友 QR Code" />
+            </div>
             <h3 class="project-card-title">瓦斯抄表小幫手 <span style="font-size:0.75em;color:var(--text-subtle);">↗</span></h3>
           </a>
           <p class="project-card-blurb">
-            拍張瓦斯表的照片丟到 LINE，AI 自動讀數、自動回報。用 GPT + Make.com 串起來，一秒完成抄表。
+            拍張瓦斯表的照片丟到 LINE，AI 自動讀數、自動回報給瓦斯公司。用 GPT + Make.com 串起來，年費 NT$120。
           </p>
-          <span class="project-card-status">測試中 · 加 LINE @017ondzk</span>
+          <span class="project-card-status">測試中 · NT$120/年 · 加 LINE @017ondzk</span>
         </article>
 
       </div>
