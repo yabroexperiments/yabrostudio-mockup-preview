@@ -1,5 +1,6 @@
 
 
+
 <!-- ECVP:BEGIN (managed by install-vet-protocol.sh — edit the yabro-hq copy, then re-run) -->
 > **🛡️ EXTERNAL CODE VETTING PROTOCOL — mandatory, ALL projects
 > (Albert, 2026-07-21).** NO external skill / plugin / MCP server /
